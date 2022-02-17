@@ -9,19 +9,24 @@ import {
   Checkbox,
 } from "@material-ui/core";
 
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { deleteTodo, setTodoCompleate } from "../../redux/actions/todos";
 
-function Todos({
-  items,
-  onClickDeleteItem,
-  onCompleateChange,
-  activeTab,
-  setActiveTab,
-}) {
+import TodoItem from "./TodoItem";
+
+function Todos({ items, activeTab, setActiveTab }) {
   const dispatch = useDispatch();
 
   const activeTabChange = (e, value) => {
     dispatch(setActiveTab(value));
+  };
+
+  const onClickDeleteItem = (id) => {
+    dispatch(deleteTodo(id));
+  };
+
+  const onCompleateChange = (value, id) => {
+    dispatch(setTodoCompleate(value, id));
   };
 
   return (
@@ -35,23 +40,11 @@ function Todos({
           (item) =>
             item.isCompleate === Boolean(activeTab) && (
               <ListItem key={item.id} disableGutters>
-                <Checkbox
-                  color="primary"
-                  checked={item.isCompleate}
-                  onChange={() => onCompleateChange(!item.isCompleate, item.id)}
+                <TodoItem
+                  item={item}
+                  onCompleateChange={onCompleateChange}
+                  onClickDeleteItem={onClickDeleteItem}
                 />
-                <ListItemText primary={item.text} />
-                <div>{item.date}</div>
-                <Button variant="outlined" color="primary">
-                  Редактировать
-                </Button>
-                <Button
-                  variant="outlined"
-                  color="primary"
-                  onClick={() => onClickDeleteItem(item.id)}
-                >
-                  Удалить
-                </Button>
               </ListItem>
             )
         )}

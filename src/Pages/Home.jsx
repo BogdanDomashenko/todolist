@@ -10,13 +10,7 @@ import {
 import { Todos } from "../Components";
 
 import { useSelector, useDispatch } from "react-redux";
-import {
-  setNewTodoValue,
-  addTodo,
-  deleteTodo,
-  setTodoCompleate,
-  setActiveTodosTab,
-} from "../redux/actions/todos";
+import { addTodo, setActiveTodosTab } from "../redux/actions/todos";
 
 function Home() {
   const [newTodoValue, setNewTodoValue] = useState("");
@@ -32,14 +26,6 @@ function Home() {
   const addTodoClick = () => {
     dispatch(addTodo(newTodoValue));
     dispatch(setActiveTodosTab(0));
-  };
-
-  const onClickDeleteItem = (id) => {
-    dispatch(deleteTodo(id));
-  };
-
-  const onCompleateChange = (value, id) => {
-    dispatch(setTodoCompleate(value, id));
   };
 
   return (
@@ -66,8 +52,6 @@ function Home() {
             items={todoList}
             activeTab={activeTodosTab}
             setActiveTab={setActiveTodosTab}
-            onClickDeleteItem={(id) => onClickDeleteItem(id)}
-            onCompleateChange={(value, id) => onCompleateChange(value, id)}
           />
         </Grid>
       </Grid>
