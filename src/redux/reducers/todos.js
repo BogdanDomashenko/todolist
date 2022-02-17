@@ -1,7 +1,7 @@
 const initialState = {
   todoList: [
-    { id: 1, isCompleate: true, text: "asiodiu", date: "19.02.2022" },
-    { id: 2, isCompleate: false, text: "kjhjkhkh", date: "19.02.2022" },
+    // { id: 1, isCompleate: true, text: "asiodiu", date: "19.02.2022" },
+    // { id: 2, isCompleate: false, text: "kjhjkhkh", date: "19.02.2022" },
   ],
   newTodoValue: "",
   activeTodosTab: 0,

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Container,
   Grid,
@@ -19,14 +19,14 @@ import {
 } from "../redux/actions/todos";
 
 function Home() {
+  const [newTodoValue, setNewTodoValue] = useState("");
+
   const dispatch = useDispatch();
 
-  const { todoList, newTodoValue, activeTodosTab } = useSelector(
-    ({ todos }) => todos
-  );
+  const { todoList, activeTodosTab } = useSelector(({ todos }) => todos);
 
   const changeTodoValue = (e) => {
-    dispatch(setNewTodoValue(e.target.value));
+    setNewTodoValue(e.target.value);
   };
 
   const addTodoClick = () => {

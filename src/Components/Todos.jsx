@@ -37,7 +37,6 @@ function Todos({
               <ListItem key={item.id} disableGutters>
                 <Checkbox
                   color="primary"
-                  label="slka"
                   checked={item.isCompleate}
                   onChange={() => onCompleateChange(!item.isCompleate, item.id)}
                 />
